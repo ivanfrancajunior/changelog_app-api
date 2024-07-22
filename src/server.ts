@@ -6,18 +6,32 @@ import updateRoutes from "./routes/updates.routes";
 
 import updatePointsRoutes from "./routes/bulletPoints.routes";
 
+import morgan from "morgan";
+
+import cors from "cors";
+
 const app = express();
+
+app.use(
+  cors({
+    origin: `http://localhost:${process.env.PORT || 3000}`,
+  })
+);
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.use("/products", productsRoutes);
+app.use("/api/product", productsRoutes);
 
-app.use("/updates", updateRoutes);
+app.use("/api/update", updateRoutes);
 
-app.use("/updatepoints", updatePointsRoutes);
+app.use("/api/updatepoints", updatePointsRoutes);
 
-app.get("/", (request, response) => {
-  response.json({ message: "Hello World!" });
+app.get("/api", (request, response) => {
+  response.status(200).json({ message: "Hello World!" });
 });
 
 export default app;
