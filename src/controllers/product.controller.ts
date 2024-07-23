@@ -7,12 +7,12 @@ export class ProductController {
   static async create(request: Request, response: Response) {
     const { name }: Product = request.body;
 
-    const requestUser = request.user;
+    const user = request.user;
 
     const product = await prisma.product.create({
       data: {
         name,
-        belongsTo: requestUser.id,
+        belongsToId: user.id,
       },
     });
 
@@ -24,7 +24,7 @@ export class ProductController {
 
     const prodcts = await prisma.product.findMany({
       where: {
-        id: requestUser.id,
+        belongsToId: requestUser.id,
       },
     });
 
@@ -66,8 +66,9 @@ export class ProductController {
 
   static async delete(request: Request, response: Response) {
     const { id } = request.params;
+    const user = request.user;
 
-    const product = await prisma.product.delete({
+    const product = await prisma.product.findUnique({
       where: {
         id,
       },
@@ -77,6 +78,15 @@ export class ProductController {
       return response.status(404).json({ error: "Product not found" });
     }
 
-    return response.status(204).json({ message: "success" });
+    if (user.id !== product.belongsToId)
+      return response.status(401).json({ error: "Unauthorized" });
+
+    await prisma.product.delete({
+      where: {
+        id,
+      },
+    });
+
+    return response.status(204).send();
   }
 }

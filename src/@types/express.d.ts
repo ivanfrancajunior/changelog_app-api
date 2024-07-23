@@ -1,9 +1,9 @@
 import { Request } from "express";
-import { IUser } from "../models/user.model";
+import { User } from "@prisma/client";
 
 declare module "express" {
   interface Request {
-    user?: IUser;
+    user?: User;
     file?: Express.Multer.File;
   }
 }
