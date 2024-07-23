@@ -1,7 +1,5 @@
 ## CHANGELOG API
 
-# Changelog API
-
 Este aplicativo permite que um gerente de produto ou engenheiro publique atualizações de produtos para seus usuários.
 
 O [**design**](https://changelog.framer.website/) demonstra a interface gráfica do aplicativo.
@@ -208,3 +206,62 @@ DELETE /api/update/:id
 | :---------- | :-------------- | :------------------------------------------ |
 | `id`        | `string`        | **Obrigatório**. ID da atualização          |
 | `headers`   | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+
+### MODULO DE BULLET POINTS (NODES) DE ATUALIZAÇÃO
+
+```http
+POST /api/updatepoints/new
+```
+
+| Parâmetro      | Tipo            | Descrição                                   |
+| :------------- | :-------------- | :------------------------------------------ |
+| `name`         | `string`        | **Obrigatório**. Nome do ponto de atualização |
+| `description`  | `string`        | **Opcional**. Descrição do ponto de atualização |
+| `headers`      | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Listagem de pontos de atualização de uma atualização
+
+```http
+GET /api/updatepoints/update/:id
+```
+
+| Parâmetro      | Tipo            | Descrição                                   |
+| :------------- | :-------------- | :------------------------------------------ |
+| `id`           | `string`        | **Obrigatório**. ID da atualização          |
+| `headers`      | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Obtenção de um ponto de atualização específico
+
+```http
+GET /api/updatepoints/update/point/:id
+```
+
+| Parâmetro      | Tipo            | Descrição                                   |
+| :------------- | :-------------- | :------------------------------------------ |
+| `id`           | `string`        | **Obrigatório**. ID do ponto de atualização |
+| `headers`      | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Atualização de um ponto de atualização
+
+```http
+PUT /api/updatepoints/:id
+```
+
+| Parâmetro      | Tipo            | Descrição                                   |
+| :------------- | :-------------- | :------------------------------------------ |
+| `id`           | `string`        | **Obrigatório**. ID do ponto de atualização |
+| `name`         | `string`        | **Obrigatório**. Nome do ponto de atualização |
+| `description`  | `string`        | **Opcional**. Descrição do ponto de atualização |
+| `headers`      | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Deleção de um ponto de atualização
+
+```http
+DELETE /api/updatepoints/:id
+```
+
+| Parâmetro      | Tipo            | Descrição                                   |
+| :------------- | :-------------- | :------------------------------------------ |
+| `id`           | `string`        | **Obrigatório**. ID do ponto de atualização |
+| `headers`      | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
