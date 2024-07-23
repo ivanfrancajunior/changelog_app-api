@@ -6,6 +6,10 @@ import updateRoutes from "./routes/updates.routes";
 
 import updatePointsRoutes from "./routes/bulletPoints.routes";
 
+import asyncHandler from "express-async-handler";
+
+import { handleErrors } from "./middlewares/handle-errors";
+
 import authRoutes from "./routes/auth.routes";
 
 import morgan from "morgan";
@@ -30,7 +34,7 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.use("/api/product", productsRoutes);
+app.use("/api/products", productsRoutes);
 
 app.use("/api/update", updateRoutes);
 
@@ -38,8 +42,12 @@ app.use("/api/updatepoints", updatePointsRoutes);
 
 app.use("/api/auth", authRoutes);
 
-app.get("/api", (request, response) => {
-  response.status(200).json({ message: "Hello World!" });
+app.get("/api", (request, response, next) => {
+  response.status(200).json({ message: "API running" });
 });
+
+app.use(asyncHandler);
+
+app.use(handleErrors);
 
 export default app;
