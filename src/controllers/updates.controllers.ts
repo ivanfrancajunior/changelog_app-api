@@ -66,7 +66,7 @@ export class UpdatesController {
   static async update(request: Request, response: Response) {
     const { id } = request.params;
 
-    const { title, version, status }: Update = request.body;
+    const { title, version, status, assets }: Update = request.body;
 
     const has_updates = await prisma.update.findUnique({
       where: {
@@ -85,6 +85,7 @@ export class UpdatesController {
         title,
         version,
         status,
+        assets,
         updatedAt: new Date(),
       },
     });
