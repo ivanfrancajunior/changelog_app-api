@@ -1,18 +1,19 @@
 import { Router } from "express";
 import { protect } from "../middlewares/verify-user";
+import { ProductController } from "../controllers/product.controller";
 
 const router = Router();
 
-router.post("/", (request, response) => {});
+router.use(protect);
 
-router.get("/", protect, (request, response) => {
-  return response.send("works");
-});
+router.post("/new", ProductController.create);
 
-router.get("/:id", (request, response) => {});
+router.get("/", ProductController.getProducts);
 
-router.put("/:id", (request, response) => {});
+router.get("/:id", ProductController.getProduct);
 
-router.delete("/:id", (request, response) => {});
+router.put("/update/:id", ProductController.update);
+
+router.delete("/delete/:id", ProductController.delete);
 
 export default router;
