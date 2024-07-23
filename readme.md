@@ -30,6 +30,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 **TOKEN_SECRET**
 
+**NODE_ENV**
+
 ## Documentação da API
 
 ### MODULO DE USUÁRIOS

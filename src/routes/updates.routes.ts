@@ -1,17 +1,35 @@
 import { Router } from "express";
 
+import { protect } from "../middlewares/verify-user";
+import { UpdatesController } from "../controllers/updates.controllers";
+import { handleValidate } from "../middlewares/handle-validate";
+import {
+  createUpdatesValidation,
+  updatesValidations,
+} from "../middlewares/update/updateValidations";
+
 const router = Router();
 
-router.post("/", (request, response) => {});
+router.use(protect);
 
-router.get("/", (request, response) => {
-    return response.send("works");
-});
+router.post(
+  "/new/:id",
+  createUpdatesValidation(),
+  handleValidate,
+  UpdatesController.create
+);
 
-router.get("/:id", (request, response) => {});
+router.get("/:id", UpdatesController.getUpdates);
 
-router.put("/:id", (request, response) => {});
+router.get("/product/:id", UpdatesController.getUpdateById);
 
-router.delete("/:id", (request, response) => {});
+router.put(
+  "/:id",
+  updatesValidations(),
+  handleValidate,
+  UpdatesController.update
+);
+
+router.delete("/:id", UpdatesController.delete);
 
 export default router;
