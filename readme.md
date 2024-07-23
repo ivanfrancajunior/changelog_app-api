@@ -92,7 +92,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 ### MODULO DE PRODUTOS
 
-### Criação de um novo produto
+#### Criação de um novo produto
 
 ```http
 POST /api/products/new
@@ -103,7 +103,7 @@ POST /api/products/new
 | `name`      | `string`   | **Obrigatório**. Nome do produto          |
 | `headers`   | `Bearer token` | **Obrigatório**. Token recebido na autenticação |
 
-### Listagem de produtos
+#### Listagem de produtos
 
 ```http
 GET /api/products
@@ -113,7 +113,7 @@ GET /api/products
 | :---------- | :--------- | :---------------------------------------- |
 | `headers`   | `Bearer token` | **Obrigatório**. Token recebido na autenticação |
 
-### Obtenção de um produto específico
+#### Obtenção de um produto específico
 
 ```http
 GET /api/products/:id
@@ -124,7 +124,7 @@ GET /api/products/:id
 | `id`        | `string`   | **Obrigatório**. ID do produto            |
 | `headers`   | `Bearer token` | **Obrigatório**. Token recebido na autenticação |
 
-### Atualização de um produto
+#### Atualização de um produto
 
 ```http
 PUT /api/products/update/:id
@@ -136,7 +136,7 @@ PUT /api/products/update/:id
 | `name`      | `string`   | **Obrigatório**. Nome do produto          |
 | `headers`   | `Bearer token` | **Obrigatório**. Token recebido na autenticação |
 
-### Deleção de um produto
+#### Deleção de um produto
 
 ```http
 DELETE /api/products/delete/:id
@@ -146,3 +146,65 @@ DELETE /api/products/delete/:id
 | :---------- | :--------- | :---------------------------------------- |
 | `id`        | `string`   | **Obrigatório**. ID do produto            |
 | `headers`   | `Bearer token` | **Obrigatório**. Token recebido na autenticação |
+
+### MODULO DE ATUALIZAÇÕES
+
+#### Criação de uma nova atualização
+
+```http
+POST /api/update/new/:id
+```
+
+| Parâmetro   | Tipo            | Descrição                                   |
+| :---------- | :-------------- | :------------------------------------------ |
+| `id`        | `string`        | **Obrigatório**. ID do produto              |
+| `title`     | `string`        | **Obrigatório**. Título da atualização      |
+| `version`   | `string`        | **Obrigatório**. Versão da atualização      |
+| `headers`   | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Listagem de atualizações de um produto
+
+```http
+GET /api/update/:id
+```
+
+| Parâmetro   | Tipo            | Descrição                                   |
+| :---------- | :-------------- | :------------------------------------------ |
+| `id`        | `string`        | **Obrigatório**. ID do produto              |
+| `headers`   | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Obtenção de uma atualização específica
+
+```http
+GET /api/update/product/:id
+```
+
+| Parâmetro   | Tipo            | Descrição                                   |
+| :---------- | :-------------- | :------------------------------------------ |
+| `id`        | `string`        | **Obrigatório**. ID da atualização          |
+| `headers`   | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Atualização de uma atualização
+
+```http
+PUT /api/update/:id
+```
+
+| Parâmetro   | Tipo            | Descrição                                   |
+| :---------- | :-------------- | :------------------------------------------ |
+| `id`        | `string`        | **Obrigatório**. ID da atualização          |
+| `title`     | `string`        | **Obrigatório**. Título da atualização      |
+| `version`   | `string`        | **Obrigatório**. Versão da atualização      |
+| `status`    | `string`        | **Opcional**. Status da atualização         |
+| `headers`   | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
+
+#### Deleção de uma atualização
+
+```http
+DELETE /api/update/:id
+```
+
+| Parâmetro   | Tipo            | Descrição                                   |
+| :---------- | :-------------- | :------------------------------------------ |
+| `id`        | `string`        | **Obrigatório**. ID da atualização          |
+| `headers`   | `Bearer token`  | **Obrigatório**. Token recebido na autenticação |
